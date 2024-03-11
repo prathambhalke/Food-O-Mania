@@ -1,7 +1,17 @@
-import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
-      <span className="text-2xl text-red-600">this is the next</span>
+    <main>
+      <p className="hover:underline">
+        <Link href="/meals">meals</Link>
+      </p>
+      <p className="hover:underline">
+        <Link href="/meals/share">meals share</Link>
+      </p>
+      <p className="hover:underline">
+        <Link href="/community">community</Link>
+      </p>
+    </main>
   );
 }
