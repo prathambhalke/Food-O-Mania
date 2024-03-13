@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <div>
-      <header className="mt-44">
+      <header className="mt-32">
         <div className="flex justify-around">
           <div className="border border-orange-600">slider</div>
           <div>
