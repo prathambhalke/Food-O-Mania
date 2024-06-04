@@ -1,5 +1,8 @@
+import MealsGrid from "@/components/Meals/MealsGrid";
 import Link from "next/link";
-const Meals = () => {
+import { getMeals } from "@/lib/meals";
+const  Meals = async () => {
+   let mealsData = await getMeals()
   return (
     <div>
       <header className="mt-32 ml-24">
@@ -20,7 +23,9 @@ const Meals = () => {
           </div>
         </div>
       </header>
-      <main></main>
+      <main>
+        <MealsGrid meals={mealsData}/>
+      </main>
     </div>
   );
 };
