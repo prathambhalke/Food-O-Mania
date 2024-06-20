@@ -21,6 +21,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "initdb.js", "src/lib/meals.js", "src/app/not-found.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "initdb.js", "src/lib/meals.js", "src/app/meals/not-found.tsx"],
   "exclude": ["node_modules"]
 }

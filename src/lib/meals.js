@@ -6,3 +6,7 @@ export async function getMeals() {
   return db.prepare("SELECT * FROM meals").all();
   // throw new Error ("the error oc")
 }
+
+export function getMeal(slug) {
+  return db.prepare("SELECT * FROM meals WHERE slug = ?").get(slug)
+}
