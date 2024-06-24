@@ -6,7 +6,6 @@ import { notFound } from "next/navigation";
 const DynamicMealsID = ({ params }: { params: { mealsID: "string" } }) => {
   const mealDetails = getMeal(params.mealsID); 
   const { title, summary,instructions, creator, creator_email } = mealDetails;
-   console.log(creator_email)
    if(!mealDetails){
     notFound()
    }

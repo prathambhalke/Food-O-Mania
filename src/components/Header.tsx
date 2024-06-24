@@ -5,7 +5,6 @@ import Link from "next/link";
 import pizzaLogo from "../../public/assets/pizzaLogo.png";
 import NavLink from "./NavLink";
 const Header = () => {
-  console.log("this is the client componenet!")
   return (
     <header className="bg-orange-400 text-white px-5 py-1 flex justify-between items-center">
       <Link href="/">
