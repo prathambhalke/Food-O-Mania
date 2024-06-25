@@ -2,6 +2,8 @@ import { mealItem } from "@/types";
 import MealsItem from "./MealsItem";
 
 const MealsGrid = ({ meals }: { meals: [] }) => {
+  console.log("😍😍😍",meals)
+
   return (
     <div className="container mx-auto">
       <h1 className="text-4xl text-center my-8">Food Items</h1>
