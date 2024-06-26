@@ -5,7 +5,7 @@ import { saveMeal } from "./meals";
 export default async function handleSubmit(formData){
     const meal = {
       title: formData.get('title'),
-      summary: formData.get('su mmary'),
+      summary: formData.get('summary'),
       instructions: formData.get('instructions'),
       image: formData.get('image'),
       creator: formData.get('creator'),

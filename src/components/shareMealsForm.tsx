@@ -10,8 +10,8 @@ export default function MealForm() {
     email: "",
     title: "",
     summary: "",
+    instructions:"",
     image: null,
-    imageUrl: null,
   });
 
   const handleChange = (e) => {
@@ -23,9 +23,10 @@ export default function MealForm() {
     e.preventDefault();
 
     const formDataToSend = new FormData();
-    formDataToSend.append("name", formData.name);
+    formDataToSend.append("creator", formData.name);
     formDataToSend.append("email", formData.email);
     formDataToSend.append("title", formData.title);
+    formDataToSend.append('instructions', formData.instructions),
     formDataToSend.append("summary", formData.summary);
     if (formData.image) {
       formDataToSend.append("image", formData.image);
@@ -75,6 +76,22 @@ export default function MealForm() {
           id="summary"
           name="summary"
           value={formData.summary}
+          onChange={handleChange}
+          required
+          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
+        />
+      </div>
+      <div className="mb-4">
+        <label
+          htmlFor="summary"
+          className="block text-sm font-medium text-gray-700"
+        >
+          Instructions:
+        </label>
+        <textarea
+          id="instructions"
+          name="instructions"
+          value={formData.instructions}
           onChange={handleChange}
           required
           className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
