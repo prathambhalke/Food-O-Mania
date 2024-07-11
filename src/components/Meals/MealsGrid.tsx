@@ -2,7 +2,6 @@ import { mealItem } from "@/types";
 import MealsItem from "./MealsItem";
 
 const MealsGrid = ({ meals }: { meals: [] }) => {
-  console.log("😍😍😍",meals)
 const reverseMeals = meals.reverse()
   return (
     <div className="container mx-auto">

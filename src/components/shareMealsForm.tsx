@@ -1,38 +1,57 @@
 "use client";
-// components/MealForm.js
-import { useState } from "react";
+// components/MealForm.tsx
+import { useState, ChangeEvent, FormEvent } from "react";
 import CustomInput from "./Input";
-import handleSubmit from "@/lib/actions";
+import handleSubmit from "@/lib/actions"; // Ensure handleSubmit is typed properly in your actions file
 import ImagePicker from "./ImagePicker";
+
+interface FormData {
+  name: string;
+  email: string;
+  title: string;
+  summary: string;
+  instructions: string;
+  image: File | null;
+}
+
 export default function MealForm() {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
     title: "",
     summary: "",
-    instructions:"",
+    instructions: "",
     image: null,
   });
 
-  const handleChange = (e) => {
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleFormSubmit = async (e) => {
+  const handleFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsSubmitting(true); // Set submitting state to true
 
     const formDataToSend = new FormData();
     formDataToSend.append("creator", formData.name);
     formDataToSend.append("email", formData.email);
     formDataToSend.append("title", formData.title);
-    formDataToSend.append('instructions', formData.instructions),
+    formDataToSend.append('instructions', formData.instructions);
     formDataToSend.append("summary", formData.summary);
     if (formData.image) {
       formDataToSend.append("image", formData.image);
     }
 
-    await handleSubmit(formDataToSend);
+    try {
+      await handleSubmit(formDataToSend);
+    } catch (error) {
+      console.error("Submission error:", error);
+    } finally {
+      setIsSubmitting(false); // Set submitting state to false
+    }
   };
 
   return (
@@ -55,7 +74,6 @@ export default function MealForm() {
         type="email"
         value={formData.email}
         onChange={handleChange}
-        required
       />
       <CustomInput
         label="Title"
@@ -83,7 +101,7 @@ export default function MealForm() {
       </div>
       <div className="mb-4">
         <label
-          htmlFor="summary"
+          htmlFor="instructions"
           className="block text-sm font-medium text-gray-700"
         >
           Instructions:
@@ -101,8 +119,9 @@ export default function MealForm() {
       <button
         type="submit"
         className="w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-orange-600 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
+        disabled={isSubmitting} // Disable button while submitting
       >
-        Share Meal
+        {isSubmitting ? "Submitting..." : "Share Meal"}
       </button>
     </form>
   );
