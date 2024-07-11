@@ -1,5 +1,6 @@
 'use server'
 
+import { redirect } from "next/navigation";
 import { saveMeal } from "./meals";
 
 export default async function handleSubmit(formData){
@@ -12,4 +13,5 @@ export default async function handleSubmit(formData){
       creator_email: formData.get('email'),
     };
     await saveMeal(meal);
+    redirect("/meals")
   };
